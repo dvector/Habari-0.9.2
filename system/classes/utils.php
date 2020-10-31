@@ -175,12 +175,15 @@ class Utils
 	{
 		/* We should only revert the magic quotes once per page hit */
 		static $revert = true;
+		/* 33v magic_quotes useless since php 5.4 TODO check if we need to striplash anytime?
 		if ( get_magic_quotes_gpc() && $revert ) {
 			$_GET = self::stripslashes( $_GET );
 			$_POST = self::stripslashes( $_POST );
 			$_COOKIE = self::stripslashes( $_COOKIE );
 			$revert = false;
 		}
+		*/
+		$revert = true;
 	}
 
 	/**

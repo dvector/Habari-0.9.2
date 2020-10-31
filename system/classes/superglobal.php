@@ -36,10 +36,11 @@ class SuperGlobal extends ArrayIterator
 			return;
 		}
 
-		if ( get_magic_quotes_gpc() ) {
-			$_GET = Utils::stripslashes( $_GET );
-			$_POST = Utils::stripslashes( $_POST );
-		}
+		// 33v get_magic_quotes_gpc() useless since PHP 5.4 TODO check if Utils::stripslashes required
+		//if ( get_magic_quotes_gpc() ) {
+		//	$_GET = Utils::stripslashes( $_GET );
+		//	$_POST = Utils::stripslashes( $_POST );
+		//}
 
 		$_GET = new SuperGlobal( $_GET );
 		$_POST = new SuperGlobal( $_POST );
@@ -63,9 +64,10 @@ class SuperGlobal extends ArrayIterator
 			return;
 		}
 
-		if ( get_magic_quotes_gpc() ) {
-			$_COOKIE = Utils::stripslashes( $_COOKIE );
-		}
+		// 33v not required since php 5.4 TODO does cookie need striplashes?
+		//if ( get_magic_quotes_gpc() ) {
+		//	$_COOKIE = Utils::stripslashes( $_COOKIE );
+		//}
 
 		$_COOKIE = new SuperGlobal( $_COOKIE );
 
