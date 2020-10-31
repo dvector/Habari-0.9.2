@@ -1,0 +1,25 @@
+## Maintenance mode
+# <limit GET>
+# deny from all
+# allow from 82.35.225.7
+# </limit>
+
+# AuthName www.mywebsite.co.uk
+# AddType application/x-httpd-php .php .htm .html
+
+# ErrorDocument 403 https://mywebsite.co.uk/maintenance/
+
+### HABARI START
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !=/favicon.ico
+RewriteBase /
+RewriteRule . index.php [PT]
+RewriteRule ^(system/(classes|handlers|locale|schema|$)) index.php [PT]
+### HABARI END
+
+### force https 301 permanent redirect 
+# RewriteEngine On
+# RewriteCond %{HTTPS} !=on
+# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
