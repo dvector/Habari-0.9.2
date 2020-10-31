@@ -416,7 +416,7 @@ class Utils
 		}
 		elseif ( strlen( $hash ) > 3 ) { // need at least {, } and a char :p
 			// verify
-			if ( $hash{0} == '{' ) {
+			if ( $hash[0] == '{' ) {
 				// new hash from the block
 				$algo = strtolower( substr( $hash, 1, strpos( $hash, '}', 1 ) - 1 ) );
 				switch ( $algo ) {
@@ -572,7 +572,7 @@ class Utils
 		$matches = preg_split( '/((?<!\\\\)%[a-z]\\s*)/iu', $format, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY );
 		$output = '';
 		foreach ( $matches as $match ) {
-			if ( $match{0} == '%' ) {
+			if ( $match[0] == '%' ) {
 				$output .= strftime( $match, $timestamp );
 			}
 			else {
