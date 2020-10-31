@@ -216,9 +216,9 @@ class InputFilter
 			$r = '';
 		}
 
-		if ( $e{0} == '#' ) {
+		if ( $e[0] == '#' ) {
 			$e = strtolower( $e );
-			if ( $e{1} == 'x' ) {
+			if ( $e[1] == 'x' ) {
 				$e = hexdec( substr( $e, 2 ) );
 			}
 			else {

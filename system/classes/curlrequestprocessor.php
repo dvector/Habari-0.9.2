@@ -94,7 +94,7 @@ class CURLRequestProcessor extends RequestProcessor
 		 * 
 		 * @todo How about trying to use the system-defined temp directory? We could at least try, even if safe_mode or something breaks it. - chrismeller
 		 */
-		$tmp = tempnam( FILE_CACHE_LOCATION, 'RR' );
+		$tmp = @tempnam( FILE_CACHE_LOCATION, 'RR' ); // 33v tempnam() Raises a Notice on windows dev only, @ to fix
 		if ( ! $tmp ) {
 			throw new Exception( _t( 'CURL Error. Unable to create temporary file name.' ) );
 		}

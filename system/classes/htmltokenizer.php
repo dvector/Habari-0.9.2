@@ -114,7 +114,7 @@ class HTMLTokenizer
 	private function get()
 	{
 		if ( $this->has_more() ) {
-			return $this->html{ $this->pos++ };
+			return $this->html[ $this->pos++ ];
 		}
 
 		return null;
@@ -122,7 +122,7 @@ class HTMLTokenizer
 
 	private function peek()
 	{
-		return $this->html{ $this->pos };
+		return $this->html[ $this->pos ];
 	}
 
 	private function up_to_str( $str )

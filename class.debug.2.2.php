@@ -297,10 +297,10 @@ class Debug {
 		$c = 0;
 		// complex build string one char at a time 
 		for($i = 0; $i < $max; $i++){
-		    if(     $match[1]{$i} == "(" ) $c++;
-		    elseif( $match[1]{$i} == ")" ) $c--;
+		    if(     $match[1][$i] == "(" ) $c++;
+		    elseif( $match[1][$i] == ")" ) $c--;
 		    if($c < 0) break;
-		    $varnames .=  $match[1]{$i};
+		    $varnames .=  $match[1][$i];
 		}
 		// $varname now a ", " seperated STRING
 		

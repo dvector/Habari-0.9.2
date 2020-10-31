@@ -9,17 +9,26 @@
 
 # ErrorDocument 403 https://mywebsite.co.uk/maintenance/
 
+
 ### HABARI START
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} !=/favicon.ico
-RewriteBase /
+RewriteBase /Habari-0.9.2
 RewriteRule . index.php [PT]
 RewriteRule ^(system/(classes|handlers|locale|schema|$)) index.php [PT]
 ### HABARI END
+
 
 ### force https 301 permanent redirect 
 # RewriteEngine On
 # RewriteCond %{HTTPS} !=on
 # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+### HABARI SQLITE START
+<Files "habari.db">
+Order deny,allow
+deny from all
+</Files>
+### HABARI SQLITE END

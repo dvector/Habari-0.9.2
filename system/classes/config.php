@@ -34,7 +34,11 @@ class Config
 	 */
 	public static function exists( $key )
 	{
-		$result = isset( self::$registry[ $key ] ) || array_key_exists(self::$prefix . $key, $_SERVER);
+		
+		// $result = isset( self::$registry[ $key ] ) || array_key_exists(self::$prefix . $key, $_SERVER);
+		// 33v TODO check property_exists() is working instead of the deprecated array_key_exists
+		$result = isset( self::$registry[ $key ] ) || property_exists($_SERVER, self::$prefix . $key);
+		
 		// If asking for the db_connection and a connection_string exists, the db_connection does, too.
 		if($key == 'db_connection') {
 			if(self::exists('connection_string')) {

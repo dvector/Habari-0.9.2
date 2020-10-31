@@ -201,6 +201,7 @@ class InstallHandler extends ActionHandler
 	 */
 	public function get_plugins()
 	{
+		$plugins = array();
 		$all_plugins = Plugins::list_all();
 		$recommended_list = array(
 			'coredashmodules.plugin.php',
@@ -678,7 +679,7 @@ class InstallHandler extends ActionHandler
 		$admin_email = $this->handler_vars['admin_email'];
 		$admin_pass = $this->handler_vars['admin_pass1'];
 
-		if ( $admin_pass{0} == '{' ) {
+		if ( $admin_pass[0] == '{' ) {
 			// looks like we might have a crypted password
 			$password = $admin_pass;
 
