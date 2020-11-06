@@ -107,16 +107,12 @@ class URL extends Singleton
 		$url = URL::instance();
 		$url->load_rules(); // Cached in singleton
 
-
-
 		/*
 		 * Run the stub through the regex matcher
 		 */
 		$pattern_matches = array();
 		self::$stub = $from_url;
-
 		foreach ( $url->rules as $rule ) {
-
 			if ( $rule->match( $from_url ) ) {
 				$url->matched_rule = $rule;
 				/* Stop processing at first matched rule... */

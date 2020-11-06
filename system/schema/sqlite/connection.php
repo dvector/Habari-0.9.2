@@ -17,7 +17,7 @@ class SQLiteConnection extends DatabaseConnection
 	 * @param array $args An array of SQL arguments
 	 * @return  string	translated SQL string
 	 */
-	function sql_t( $sql, &$args )
+	function sql_t( $sql, $args )
 	{
 		$sql = preg_replace_callback( '%concat\(([^)]+?)\)%i', array( &$this, 'replace_concat' ), $sql );
 		$sql = preg_replace( '%DATE_SUB\s*\(\s*NOW\(\s*\)\s*,\s*INTERVAL\s+([0-9]+)\s+DAY\s*\)%ims', 'date(\'now\', \'-${1} days\')', $sql );

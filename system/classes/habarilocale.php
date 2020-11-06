@@ -256,11 +256,11 @@ class HabariLocale
 		}
 		else {
 			// default: one plural form for all cases but n==1 (english)
-			//$fn = create_function(
-			//	'$n',
-			//	'$nplurals=2;$plural=($n==1?0:1);return ($plural>=$nplurals?$nplurals-1:$plural);'
-			//);
-$fn = null;
+			/*$fn = create_function(
+				'$n',
+				'$nplurals=2;$plural=($n==1?0:1);return ($plural>=$nplurals?$nplurals-1:$plural);'
+			);*/  // create_function() deprecated as of php 7.2
+			$fn = function($fn) { return null; };
 		}
 
 		return $fn;

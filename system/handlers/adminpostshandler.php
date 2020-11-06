@@ -18,7 +18,7 @@ class AdminPostsHandler extends AdminHandler
 	{
 		$extract = $this->handler_vars->filter_keys( 'id', 'content_type' );
 		foreach ( $extract as $key => $value ) {
-			${$key} = $value;
+			$$key = $value;
 		}
 
 		// 0 is what's assigned to new posts
@@ -53,10 +53,9 @@ class AdminPostsHandler extends AdminHandler
 
 		$statuses = Post::list_post_statuses( false );
 		$this->theme->statuses = $statuses;
-		
-//	debug::out($post);	
-		$form = $post->get_form( 'admin' ); 
-		
+
+		$form = $post->get_form( 'admin' );
+
 		$this->theme->form = $form;
 
 		$this->theme->wsse = Utils::WSSE();

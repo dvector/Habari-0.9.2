@@ -1381,17 +1381,14 @@ class InstallHandler extends ActionHandler
 	 */
 	public function upgrade_db()
 	{
-		
-//debug::out();
-
 		if ( Options::get( 'db_upgrading' ) ) {
 			// quit with an error message.
-			//$this->display_currently_upgrading();
+			$this->display_currently_upgrading();
 		}
 
 		// don't allow duplicate upgrades.
-		//Options::set( 'db_upgrading', true );
-debug::out();
+		Options::set( 'db_upgrading', true );
+
 		// This database-specific code needs to be moved into the schema-specific functions
 		list( $schema, $remainder )= explode( ':', Config::get( 'db_connection' )->connection_string );
 		switch ( $schema ) {

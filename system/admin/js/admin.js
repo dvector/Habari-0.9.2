@@ -1224,6 +1224,7 @@ var theMenu = {
 		});
 
 		// Open menu on Q
+/*
 		$.hotkeys.add('q', {propagate:true, disableInInput: true}, function(){
 			if ($('#menu #menulist > ul').css('display') != 'block') {
 				dropButton.currentDropButton = $('#menu');
@@ -1234,14 +1235,18 @@ var theMenu = {
 				return false;
 			}
 		});
+*/
 
 		// Close menu on ESC
+/*
 		$.hotkeys.add('esc', {propagate:true, disableInInput: false}, function(){
 			$('.carrot').removeClass('carrot');
 			dropButton.hideMenu();
 		});
 
+*/
 		// Down arrow
+/*
 		$.hotkeys.add('down', {propagate:true, disableInInput: true}, function(evt) {
 			if ($('#menulist .carrot ul li.carrot').length !== 0) {
 				if ($('#menulist .carrot ul li:last').hasClass('carrot')) {
@@ -1271,11 +1276,14 @@ var theMenu = {
 			}
 			return false;
 		});
+*/
 
 		// Left arrow
+/*
 		$.hotkeys.add('left', {propagate:true, disableInInput: true}, function(){
 			$('.carrot ul li.carrot').removeClass('carrot');
 		});
+*/
 
 		// Up arrow
 		$.hotkeys.add('up', {propagate:true, disableInInput: true}, function(){
@@ -1680,7 +1688,7 @@ $(document).ready(function(){
 	});
 
 	/* Make Textareas Resizable */
-	$('.resizable').resizeable();
+	// 33v php7.2 $('.resizable').resizeable();
 
 	/* Init Tabs, using jQuery UI Tabs */
 	$('.tabcontrol').parent().tabs({ 
@@ -1728,7 +1736,7 @@ $(document).ready(function(){
 	});
 
 	// Init shift-click for range select on checkboxes
-	$('input.checkbox').rangeSelect();
+	// $('input.checkbox').rangeSelect();
 	
 	// theme popups
 	$('.themethumb').click(function(e){

@@ -50,7 +50,7 @@ class Session
 		}
 		
 		// now we've got a path and secure, so set the cookie values
-//33v for PHP 7	session_set_cookie_params( null, $path, null, $secure );
+		@session_set_cookie_params( null, $path, null, $secure ); //33v TODO check PHP 7 failed, but 7.4 ok
 		
 		// figure out the session lifetime and let plugins change it
 		$lifetime = ini_get( 'session.gc_maxlifetime' );
@@ -69,7 +69,7 @@ class Session
 
 		$handlers = Plugins::filter('session_handlers', $handlers);
 
-// 33v for PHP 7	call_user_func_array('session_set_save_handler', $handlers);
+		@call_user_func_array('session_set_save_handler', $handlers);
 		// session::write gets called after object destruction, so our class isn't available
 		// fix that by registering it as a shutdown function, before objects are destroyed
 		register_shutdown_function( 'session_write_close' );

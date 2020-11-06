@@ -780,9 +780,9 @@ class DatabaseConnection
 	 * @param array $args An array of SQL arguments
 	 * @return string The translated query
 	 */
-	public function sql_t( $query, &$args )
+	public function sql_t( $sql, $args )
 	{
-		return $query;
+		return $sql;
 	}
 
 	/**

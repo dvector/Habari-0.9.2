@@ -29,7 +29,7 @@ class Plugins
 	 * Autoload function to load plugin file from classname
 	 */
 	public static function _autoload( $class )
-	{ 
+	{
 		if ( isset( self::$plugin_files[$class] ) ) {
 			require( self::$plugin_files[$class] );
 			if( !class_exists($class, false)) {
@@ -46,7 +46,7 @@ class Plugins
 				self::list_active(true); // Refresh the internal list
 
 				// Reactivate it to try to get the new class loaded
-				self::activate_plugin($filename); 
+				self::activate_plugin($filename);
 				Utils::redirect(null, false);
 				exit();
 			}
@@ -401,9 +401,9 @@ class Plugins
 	 * @return string the class name
 	 */
 	public static function class_from_filename( $file, $check_realpath = false )
-	{ 
+	{
 		if ( $check_realpath ) {
-			$file = realpath( $file ); 
+			$file = realpath( $file );
 		}
 		foreach ( self::get_plugin_classes() as $plugin ) {
 			$class = new ReflectionClass( $plugin );
@@ -411,9 +411,9 @@ class Plugins
 			if ( $classfile == $file ) {
 				return $plugin;
 			}
-		} 
+		}
 		// if we haven't found the plugin class, try again with realpath resolution:
-		if ( $check_realpath ) { debug::out($file);
+		if ( $check_realpath ) {
 			// really can't find it
 			return false;
 		}
@@ -435,8 +435,8 @@ class Plugins
 	 * @return Plugin The instantiated plugin class
 	 */
 	public static function load_from_file( $file, $activate = true )
-	{ 
-		$class = self::class_from_filename( $file ); 
+	{
+		$class = self::class_from_filename( $file );
 		return self::load( $class, $activate );
 	}
 

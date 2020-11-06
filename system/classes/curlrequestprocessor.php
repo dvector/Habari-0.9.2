@@ -174,14 +174,11 @@ class CURLRequestProcessor extends RequestProcessor
 			
 			if ( count( $pieces ) > 1 ) {
 				// if the header was a key: value format, store it keyed in the array
-				// 33v REMOVED php 7.2  $this->headers[ $pieces[0] ] = $pieces[1];
+				$this->headers[ $pieces[0] ] = $pieces[1]; //33v TODO why removed for 7.2?
 			}
-			else {
-				//debug::out( $pieces[0] );
-				//debug::out( $this->headers );
+			else { if (!is_array($this->headers)) { $this->headers = array(); }
 				// some headers (like the HTTP version in use) aren't keyed, so just store it keyed as itself
-				// 33v REMOVED php 7.2 $this->headers[ $pieces[0] ] = $pieces[0];
-
+				$this->headers[ $pieces[0] ] = $pieces[0]; // 33v TODO why removed for 7.2?
 			}
 			
 		}

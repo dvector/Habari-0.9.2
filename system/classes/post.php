@@ -919,10 +919,6 @@ class Post extends QueryRecord implements IsContent, FormStorage
 	 */
 	public function get_form( $context )
 	{
-		
-debug::out($context);
-return;
-
 		$form = new FormUI( 'create-content' );
 		$form->class[] = 'create';
 
@@ -1014,6 +1010,7 @@ return;
 		// Create the button area
 		$buttons = $form->append( 'fieldset', 'buttons' );
 		$buttons->template = 'admincontrol_buttons';
+		if(!is_array($buttons->class)){ $buttons->class = array(); } // 33v fix for php 7.2
 		$buttons->class[] = 'container';
 		$buttons->class[] = 'buttons';
 		$buttons->class[] = 'publish';

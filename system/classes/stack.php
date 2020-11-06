@@ -46,7 +46,7 @@ class Stack
 	 */
 	private function __construct( $input )
 	{
-		parent::__construct( $input );
+		// parent::__construct( $input ); // TODO check for 7 Deprecated violation: Cannot use "parent" when current class scope has no parent in system\classes\stack.php line 49
 	}
 
 	/**

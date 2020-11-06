@@ -165,9 +165,7 @@ class Controller extends Singleton
 		$matched_rule = URL::parse( $controller->stub );
 
 		if ( $matched_rule === false ) {
-
 			$matched_rule = URL::set_404();
-
 		}
 
 		/* OK, we have a matching rule.  Set the action and create a handler */

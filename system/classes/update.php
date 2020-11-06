@@ -8,7 +8,8 @@
  */
 class Update extends Singleton
 {
-	//33v 2018 https at habri has expired
+	// 33v 2018 https at habri has expired
+	// TODO fix beacon address
 	// const UPDATE_URL = 'https://beacon.habariproject.org/';
 	const UPDATE_URL = 'http://beacon.habariproject.org/';
 	

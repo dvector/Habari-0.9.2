@@ -194,8 +194,10 @@ class Theme extends Pluggable
 		$where_filters = array();
 		$where_filters = Controller::get_handler_vars()->filter_keys( $this->valid_filters );
 		$where_filters['vocabulary'] = array();
-
-		if ( array_key_exists( 'tag', $where_filters ) ) {
+        // debug::out( $where_filters->tag );
+		// if ( array_key_exists( 'tag', $where_filters ) ) {  // SuperGlobal Object
+		// 33v TODO check isset case woring, investigate why property_exists() fails
+		if ( isset( $where_filters->tag ))  {
 			$tags = Tags::parse_url_tags( $where_filters['tag'] );
 			$not_tag = $tags['exclude_tag'];
 			$all_tag = $tags['include_tag'];
@@ -237,13 +239,11 @@ class Theme extends Pluggable
 // $stub = Controller::get_stub();
 	$stub = $where_filters['slug'];
 	$test_file = Site::get_dir('theme',true).'page.'.$stub.'.php'; // has to be 'page.something' otherwise habari won't load it
-//debug::out($where_filters);
-//  end 33v
+// debug::out($where_filters);
+// end 33v
 
-// posts count  33v php 7 ERROR posts not countable
-/*	orig habari
- *		if ( $posts !== false && count( $posts ) > 0 ) {
-			if ( count( $posts ) == 1 ) {
+		if ( $posts !== false  ) { // 33v for php7.2 removed && count( $posts ) > 0
+			if ( $posts instanceof POST ) { //  33v for php7.2 replaced count( $posts ) == 1 with $posts instanceof POST
 				$post = $posts instanceof Post ? $posts : reset( $posts );
 				Stack::add( 'body_class', Post::type_name( $post->content_type ) . '-' . $post->id );
 			}
@@ -253,7 +253,8 @@ class Theme extends Pluggable
 			}
 			$this->assign( 'post', $post );
 			$type = Post::type_name( $post->content_type );
-		}*/
+		}
+
 // debug::out($posts);
 		if ( $posts !== false ) { // 33v 
 			if ( $posts instanceof POST ) { // 33v && count( $posts ) == 1
@@ -306,20 +307,18 @@ class Theme extends Pluggable
 				die;
 			}
 		}
-// debug::out( );
 
 		$extract = $where_filters->filter_keys( 'page', 'type', 'id', 'slug', 'posttag', 'year', 'month', 'day', 'tag', 'tag_slug' );
 		foreach ( $extract as $key => $value ) {
-			${$key} = $value;
+			$$key = $value;
 		}
 
 		$this->assign( 'page', isset( $page )? $page:1 );
-//debug::out($fallback);
 
 		if ( !isset( $fallback ) ) {
 			// Default fallbacks based on the number of posts
 			$fallback = array( '{$type}.{$id}', '{$type}.{$slug}', '{$type}.tag.{$posttag}' );
-			if ( count( $posts ) > 1 ) {
+			if ( is_array( $posts ) && count( $posts ) > 1 ) { //33v 7.2
 				$fallback[] = '{$type}.multiple';
 				$fallback[] = 'multiple';
 			}
