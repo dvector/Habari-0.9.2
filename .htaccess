@@ -32,3 +32,10 @@ Order deny,allow
 deny from all
 </Files>
 ### HABARI SQLITE END
+
+### HABARI SQLITE START
+<Files "habari2.db">
+Order deny,allow
+deny from all
+</Files>
+### HABARI SQLITE END

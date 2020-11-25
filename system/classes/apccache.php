@@ -134,7 +134,7 @@ class APCCache extends Cache
 	 * @param string $match_mode (optional) how to match bucket names ('strict', 'regex', 'glob') (default 'strict')
 	 */
 	protected function _expire( $name, $group, $match_mode = 'strict' )
-	{
+	{ debug::out($group);
 		if ( !$this->enabled ) {
 			return null;
 		}
