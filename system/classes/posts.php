@@ -113,7 +113,7 @@ class Posts extends ArrayObject implements IsContent
 	public static function get( $paramarray = array() )
 	{
 		static $presets;
-
+debug::out( $paramarray );
 		// If $paramarray is a string, use it as a Preset
 		if(is_string($paramarray)) {
 			$paramarray = array('preset' => $paramarray);
@@ -185,7 +185,7 @@ class Posts extends ArrayObject implements IsContent
 			$where = new QueryWhere();
 
 			$paramset = array_merge( (array) $paramarray, (array) $paramset );
-
+debug::out( $paramset['content_type'] );
 			if ( isset( $paramset['id'] ) ) {
 				$where->in('{posts}.id', $paramset['id'], 'posts_id', 'intval');
 			}

@@ -120,6 +120,7 @@ class Post extends QueryRecord implements IsContent, FormStorage
 
 		// Check if it exists
 		if ( array_key_exists( $type, $all_post_types ) ) {
+					
 			if ( ! $all_post_types[$type]['active'] == 1 ) {
 				// Activate it
 				$sql = 'UPDATE {posttype} SET active = 1 WHERE id = ' . $all_post_types[$type]['id'];
@@ -388,13 +389,11 @@ class Post extends QueryRecord implements IsContent, FormStorage
 			self::default_fields(),
 			$this->fields
 		);
-
 		parent::__construct( $paramarray );
 		if ( isset( $this->fields['tags'] ) ) {
 			$this->tags_object = Terms::parse( $this->fields['tags'], 'Tag', Tags::vocabulary() );
 			unset( $this->fields['tags'] );
 		}
-
 		$this->exclude_fields( 'id' );
 		/* $this->fields['id'] could be null in case of a new post. If so, the info object is _not_ safe to use till after set_key has been called. Info records can be set immediately in any other case. */
 	}

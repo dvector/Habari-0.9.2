@@ -528,6 +528,9 @@ class DatabaseConnection
 	{
 		if ( $this->query( $query, $args ) ) {
 			$result = $this->pdo_statement->fetch( PDO::FETCH_NUM );
+			
+			if( !isset($result[0]) || $result == false ) { $result[0] = 0; }
+// 			debug::out($result);
 			return $result[0];
 		}
 		else {
